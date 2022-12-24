@@ -47,9 +47,5 @@ public class SystemService {
 		return systemRepository.findByNameContains(name);
 	}
 	
-	public static void main(String[] args) {
-		LocalDate date = LocalDate.now();
-		String _date = date.format(DateTimeFormatter.BASIC_ISO_DATE);
-		java.lang.System.out.println(_date);
-	}
+	
 }
