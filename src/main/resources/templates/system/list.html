@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/base :: layout(~{::title},~{::section})}"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>System 등록하기</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 560px;
+        }
+    </style>
+</head>
+<body>
+<section>
+		<div class="card">
+			<img src="..." class="card-img-top" alt="...">
+
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">Some quick example text to build on the
+					card title and make up the bulk of the card's content.</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			</div>
+		</div>
+		<div class="card">
+			<img src="..." class="card-img-top" alt="...">
+
+			<div class="card-body">
+				<h5 class="card-title">Card title</h5>
+				<p class="card-text">Some quick example text to build on the
+					card title and make up the bulk of the card's content.</p>
+				<a href="#" class="btn btn-primary">Go somewhere</a>
+			</div>
+		</div>
+		<script src="/js/app/system/save.js"></script>
+</section>
+</body>
+</html>

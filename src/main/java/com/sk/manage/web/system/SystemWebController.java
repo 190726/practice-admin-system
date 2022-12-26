@@ -12,4 +12,10 @@ public class SystemWebController {
 	public String saveForm() {
 		return "system/save";
 	}
+	
+	@GetMapping("/list")
+	public String list() {
+		return "system/list";
+	}
+	
 }
