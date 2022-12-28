@@ -7,13 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import com.sk.manage.domain.BaseTimeEntity;
 import org.springframework.util.StringUtils;
 
 import lombok.NoArgsConstructor;
 
 @Entity
 @NoArgsConstructor
-public class System {
+public class System extends BaseTimeEntity {
 
 	@Id @GeneratedValue
 	@Column
