@@ -6,10 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -19,6 +16,7 @@ import java.time.LocalDateTime;
 public class User extends BaseTimeEntity {
 
 	@Id
+	@Column(name = "user_id")
 	private String sno;
 
 	private String name;
@@ -29,7 +27,6 @@ public class User extends BaseTimeEntity {
 	private LocalDateTime enterDate;
 
 	private LocalDateTime retireDate;
-
 	@Builder
 	public User(String sno, String name, DutyStep dutyStep,
 				LocalDateTime enterDate, LocalDateTime retireDate){

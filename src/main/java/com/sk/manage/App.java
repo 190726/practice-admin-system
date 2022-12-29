@@ -3,6 +3,7 @@ package com.sk.manage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.sk.manage.domain.system.SystemUser;
 import com.sk.manage.domain.user.DutyStep;
 import com.sk.manage.domain.user.User;
 import com.sk.manage.domain.user.UserRepository;
@@ -52,6 +53,8 @@ public class App {
 			systemRepository.save(system1);
 			systemRepository.save(system2);
 			systemRepository.save(system3);
+
+
 		};
 	}
 }
