@@ -58,9 +58,9 @@ public class System extends BaseTimeEntity {
 		return openDate;
 	}
 
-	public System enrolledSystemUser(User user){
+	public System enrolledSystemUser(SystemUser systemUser){
 		//CascadeType.ALL 이어야, System_user 가 반영됨.
-		systemUsers.add(SystemUser.createSystemUser(this, user));
+		systemUsers.add(systemUser);
 		return this;
 	}
 

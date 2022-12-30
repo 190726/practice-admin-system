@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.sk.manage.domain.system.SystemUser;
 import com.sk.manage.domain.user.User;
 import com.sk.manage.domain.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +55,8 @@ public class SystemService {
 	public void enrolledSystemUser(Long systemId, String userId) {
 		User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("no exist user, id:" + userId));
 		System system = systemRepository.findById(systemId).orElseThrow(() -> new IllegalStateException("no exist system, id:" + systemId));
-		System saveSystem = system.enrolledSystemUser(user);
+		SystemUser systemUser = SystemUser.createSystemUser(system, user);
+		System saveSystem = system.enrolledSystemUser(systemUser);
 		systemRepository.save(saveSystem);
 	}
 

@@ -38,23 +38,28 @@ public class App {
 		//테이블생성(schema.sql) 스크립트보다 빨리 실행됨. 테이블이 미생성되어 있는 경우, 오류
 		return args -> {
 
-			String sno = "190726";
-			String name = "이상국";
-			DutyStep dutyStep = DutyStep.MANAGER;
-			LocalDateTime enterDate = LocalDateTime.of(2022, 12, 22, 0,0,0);
-			User user = User.builder().sno(sno).name(name).dutyStep(dutyStep).enterDate(enterDate).build();
+			String sno1 = "190726";
+			String name1 = "이상국";
+			DutyStep dutyStep1 = DutyStep.MANAGER;
+			LocalDateTime enterDate1 = LocalDateTime.of(2022, 12, 22, 0,0,0);
+			User user1 = User.builder().sno(sno1).name(name1).dutyStep(dutyStep1).enterDate(enterDate1).build();
+
+			String sno2 = "190828";
+			String name2 = "이윤아";
+			DutyStep dutyStep2 = DutyStep.MANAGER;
+			LocalDateTime enterDate2 = LocalDateTime.of(2022, 12, 22, 0,0,0);
+			User user2 = User.builder().sno(sno2).name(name2).dutyStep(dutyStep2).enterDate(enterDate2).build();
 
 			//when
-			userRepository.save(user);
+			userRepository.save(user1);
+			userRepository.save(user2);
 
-			System system1 = new System("a0001", LocalDate.now());
-			System system2 = new System("b0001", LocalDate.now());
-			System system3 = new System("c0001", LocalDate.now());
+			System system1 = new System("사이버창구", LocalDate.now());
+			System system2 = new System("모바일영업지원", LocalDate.now());
+			System system3 = new System("인시스", LocalDate.now());
 			systemRepository.save(system1);
 			systemRepository.save(system2);
 			systemRepository.save(system3);
-
-
 		};
 	}
 }
