@@ -7,10 +7,7 @@ import com.sk.manage.domain.system.SystemRepository;
 import com.sk.manage.domain.system.SystemUser;
 import com.sk.manage.domain.user.User;
 import com.sk.manage.domain.user.UserRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.sk.manage.service.system.SystemService;
 
@@ -20,6 +17,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/api")
 public class SystemApiController {
 
 	private final SystemService systemService;

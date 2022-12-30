@@ -13,7 +13,7 @@ var systemSave = {
 			
 			$.ajax({
 				type: 'POST',
-				url: '/system/save',
+				url: '/api/system/save',
 				dataType: 'json',
 				contentType: 'application/json; charset=utf-8',
 				data: JSON.stringify(data)
