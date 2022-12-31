@@ -52,12 +52,11 @@ public class SystemService {
 	}
 
 	@Transactional
-	public void enrolledSystemUser(Long systemId, String userId) {
+	public System enrolledSystemUser(Long systemId, String userId) {
 		User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("no exist user, id:" + userId));
 		System system = systemRepository.findById(systemId).orElseThrow(() -> new IllegalStateException("no exist system, id:" + systemId));
 		SystemUser systemUser = SystemUser.createSystemUser(system, user);
-		System saveSystem = system.enrolledSystemUser(systemUser);
-		systemRepository.save(saveSystem);
+		return system.enrolledSystemUser(systemUser);
 	}
 
 	private SystemResponseDto mappedDto(System system) {

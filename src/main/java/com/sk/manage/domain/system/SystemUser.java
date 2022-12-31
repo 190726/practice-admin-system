@@ -1,6 +1,7 @@
 package com.sk.manage.domain.system;
 
 import com.sk.manage.domain.user.User;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
@@ -9,6 +10,7 @@ import javax.persistence.*;
 @Table(name = "system_user")
 @NoArgsConstructor
 @ToString
+@Getter
 @Entity
 public class SystemUser {
 
