@@ -21,5 +21,4 @@ public class UserApiController {
     public List<UserResponseDto> users(){
         return userService.allUsers();
     }
-
 }

@@ -13,8 +13,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.sk.manage.service.system.SystemService;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.test.context.ActiveProfiles;
 
 @Slf4j
+@ActiveProfiles("test")
 @SpringBootTest
 class SystemTest {
 

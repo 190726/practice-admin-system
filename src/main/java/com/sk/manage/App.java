@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.sk.manage.domain.system.SystemRepository;
 import com.sk.manage.domain.system.System;
+import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
@@ -30,7 +31,8 @@ public class App {
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
 	}
-	
+
+	@Profile("!test")
 	@Bean
 	public ApplicationRunner myApplicationRunner() {
 
