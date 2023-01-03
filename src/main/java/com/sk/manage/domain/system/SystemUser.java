@@ -30,7 +30,7 @@ public class SystemUser {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
+    
     public static SystemUser createSystemUser(System system, User user){
         SystemUser su = new SystemUser(system, user);
         return su;

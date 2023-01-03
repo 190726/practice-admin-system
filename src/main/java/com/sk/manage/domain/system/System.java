@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import lombok.NoArgsConstructor;
 
 @Entity
-@ToString
 @NoArgsConstructor
 public class System extends BaseTimeEntity {
 
@@ -25,9 +24,16 @@ public class System extends BaseTimeEntity {
 	private String name;
 	
 	private LocalDate openDate;
+	
+	private String desc;
 
 	@OneToMany(mappedBy = "system",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<SystemUser> systemUsers = new ArrayList<>();
+	
+	@ElementCollection(fetch = FetchType.LAZY)
+	@CollectionTable(name = "SYSTEM_DB",
+			         joinColumns = @JoinColumn(name="SYSTEM_DB_ID"))
+	private List<SystemDB> systemDbs = new ArrayList<>();
 
 	public System(long id, String name, LocalDate openDate) {
 		validateName(name);
@@ -45,6 +51,10 @@ public class System extends BaseTimeEntity {
 	public List<SystemUser> getSystemUsers(){
 		return systemUsers;
 	}
+	
+	public List<SystemDB> getSystemDbs(){
+		return systemDbs;
+	}
 
 	public String getSystemName(){
 		return name;
@@ -57,20 +67,27 @@ public class System extends BaseTimeEntity {
 	public LocalDate getSystemOpenDate() {
 		return openDate;
 	}
+	
+	public String getDesc() {
+		return desc;
+	}
+	
+	public void updateDesc(String desc) {
+		this.desc = desc;
+	}
 
 	public System enrolledSystemUser(SystemUser systemUser){
 		//CascadeType.ALL 이어야, System_user 가 반영됨.
 		systemUsers.add(systemUser);
 		return this;
 	}
+	
+	public System addSystemDbInfo(SystemDB systemDb) {
+		systemDbs.add(systemDb);
+		return this;
+	}
 
 	private void validateName(String name) {
 		if(StringUtils.isEmpty(name)) throw new IllegalArgumentException("System name is Empty!");
 	}
-
-	@Override
-	public String toString() {
-		return "System [id=" + id + ", name=" + name + ", openDate=" + openDate + "]";
-	}
-	
 }

@@ -1,14 +1,15 @@
 package com.sk.manage.web.user;
 
-import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
-@AllArgsConstructor
 public class UserResponseDto {
 
     private String sno;
@@ -16,4 +17,14 @@ public class UserResponseDto {
     private String dutyStep;
     private String enterDate;
     private String retireDate;
+    
+    @Builder
+    public UserResponseDto(String sno, String name, String dutyStep,
+    		String enterDate, String retireDate) {
+    	this.sno = sno;
+    	this.name = name;
+    	this.dutyStep = dutyStep;
+    	this.enterDate = enterDate;
+    	this.retireDate = retireDate;
+    }
 }

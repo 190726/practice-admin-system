@@ -3,7 +3,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
-    <title>System 목록</title>
+    <title>System Detail</title>
     <link th:href="@{/css/bootstrap.min.css}"
           href="../../static/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -21,13 +21,11 @@
 </head>
 <body>
 <section>
-	<div class="card" th:each="sys: ${systems}">
-		<div class="card-body">
-			<h5 class="card-title" th:text="${sys.name}">모바일 영업지원</h5>
-			<p class="card-text" th:text="${sys.desc}">홈페이지 대고객 서비스 전자금융거래</p>
-			<a th:href="@{/system/detail/{sysId}(sysId = ${sys.id})}" class="btn btn-primary">detail</a>
-		</div>
-	</div>
+시스템 상세 
+<div th:each="user: ${detailDto.users}">
+	<p th:text="${user.sno}"></p>
+	<p th:text="${user.name}"></p>
+</div>
 </section>
 </body>
 </html>

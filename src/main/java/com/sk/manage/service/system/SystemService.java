@@ -1,24 +1,24 @@
 package com.sk.manage.service.system;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.sk.manage.domain.system.System;
+import com.sk.manage.domain.system.SystemRepository;
 import com.sk.manage.domain.system.SystemUser;
 import com.sk.manage.domain.user.User;
 import com.sk.manage.domain.user.UserRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.sk.manage.domain.system.SystemRepository;
+import com.sk.manage.web.system.SystemDBDto;
+import com.sk.manage.web.system.SystemDetailDto;
 import com.sk.manage.web.system.SystemRequestDto;
 import com.sk.manage.web.system.SystemResponseDto;
-import com.sk.manage.domain.system.System;
-import org.springframework.transaction.annotation.Transactional;
+import com.sk.manage.web.user.UserSimpleDto;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -58,8 +58,38 @@ public class SystemService {
 		SystemUser systemUser = SystemUser.createSystemUser(system, user);
 		return system.enrolledSystemUser(systemUser);
 	}
+	
+	@Transactional
+	public SystemDetailDto systemDetailDto(Long systemId) {
+		System findSystem = systemRepository.findDetailById(systemId);
+		
+		List<UserSimpleDto> users = findSystem.getSystemUsers().stream()
+				.map(user -> {
+					User u = user.getUser();
+					return new UserSimpleDto(u.getSno(), u.getName());
+				}).collect(Collectors.toList());
+		
+		List<SystemDBDto> dbs = findSystem.getSystemDbs().stream()
+				.map(sdb -> {
+					return new SystemDBDto(sdb.getDbtype().name()
+						,sdb.getUrl()
+						,sdb.getUserId()
+						,sdb.getUserPwd());
+		}).collect(Collectors.toList());
+		
+		SystemDetailDto resultDto = SystemDetailDto.builder()
+				.id(systemId)
+				.name(findSystem.getSystemName())
+				.users(users)
+				.dbs(dbs)
+				.build();
+		return resultDto;
+	}
 
 	private SystemResponseDto mappedDto(System system) {
-		return new SystemResponseDto(system.getSystemId(), system.getSystemName(), system.getSystemOpenDate());
+		return new SystemResponseDto(system.getSystemId(),
+				system.getSystemName(),
+				system.getSystemOpenDate(),
+				system.getDesc());
 	}
 }

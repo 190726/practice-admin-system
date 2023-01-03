@@ -1,20 +1,21 @@
 package com.sk.manage.web.system;
 
-import java.time.LocalDate;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-@Getter @Setter
+@Getter
+@Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SystemResponseDto {
+public class SystemDBDto {
 	
-	private Long id;
-	private String name;
-	private LocalDate openDate;
-	private String desc;
+	private String dbType;
+	private String url;
+	private String userId;
+	private String userPwd;
 
 }

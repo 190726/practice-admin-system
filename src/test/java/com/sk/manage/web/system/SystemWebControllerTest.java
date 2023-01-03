@@ -40,7 +40,7 @@ class SystemWebControllerTest {
 	
 	@Test
 	void test() throws Exception {
-		SystemResponseDto dto1 = new SystemResponseDto(1L, "mobile", LocalDate.now());
+		SystemResponseDto dto1 = new SystemResponseDto(1L, "mobile", LocalDate.now(), "desc");
 		BDDMockito.given(systemService.findAll()).willReturn(Collections.singletonList(dto1));
 		
 		mvc.perform(MockMvcRequestBuilders.get("/system/list"))
