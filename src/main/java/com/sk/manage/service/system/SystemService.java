@@ -1,6 +1,7 @@
 package com.sk.manage.service.system;
 
 import java.util.List;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -53,8 +54,8 @@ public class SystemService {
 
 	@Transactional
 	public System enrolledSystemUser(Long systemId, String userId) {
-		User user = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException("no exist user, id:" + userId));
-		System system = systemRepository.findById(systemId).orElseThrow(() -> new IllegalStateException("no exist system, id:" + systemId));
+		User user = userRepository.findById(userId).orElseThrow(throwEx(userId));
+		System system = systemRepository.findById(systemId).orElseThrow(throwEx(userId));
 		SystemUser systemUser = SystemUser.createSystemUser(system, user);
 		return system.enrolledSystemUser(systemUser);
 	}
@@ -91,5 +92,9 @@ public class SystemService {
 				system.getSystemName(),
 				system.getSystemOpenDate(),
 				system.getDesc());
+	}
+	
+	private Supplier<IllegalStateException> throwEx(String id){
+		return () -> new IllegalStateException("no exist data, pk:" + id);
 	}
 }

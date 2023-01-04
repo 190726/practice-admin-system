@@ -4,8 +4,11 @@ import com.sk.manage.domain.user.DutyStep;
 import com.sk.manage.domain.user.User;
 import com.sk.manage.domain.user.UserRepository;
 import com.sk.manage.service.system.SystemService;
+import com.sk.manage.web.system.SystemDetailDto;
+
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -58,6 +61,26 @@ class SystemServiceTest {
         //then
         Assertions.assertThat(systemUser.getSystem().getSystemId()).isEqualTo(saveSystem.getSystemUsers().get(0).getSystem().getSystemId());
         Assertions.assertThat(systemUser.getUser().getSno()).isEqualTo(saveUser.getSno());
+    }
+    
+    @Transactional
+    @Test
+    @DisplayName("system detail content test")
+    void systemDetailDtoTest() {
+    	
+    	//given
+        System system = createSystem();
+        User user = createUser();
+        System saveSystem = systemRepository.save(system);
+        User saveUser = userRepository.save(user);
+        
+        System enrolledSystemUser = systemService.enrolledSystemUser(saveSystem.getSystemId(), saveUser.getSno());
+    	
+    	SystemDetailDto systemDetailDto = systemService.systemDetailDto(enrolledSystemUser.getSystemId());
+    	
+    	Assertions.assertThat(systemDetailDto.getName()).isEqualTo(saveSystem.getSystemName());
+    	
+    	//SystemDetailDto(id=1, name=사이버창구, users=[UserSimpleDto(sno=190726, name=이상국)], dbs=[])
     }
 
 

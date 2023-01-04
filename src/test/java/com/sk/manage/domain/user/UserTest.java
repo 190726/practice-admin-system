@@ -37,7 +37,6 @@ class UserTest {
         //then
         Assertions.assertThat(findUser.getName()).isEqualTo(user.getName());
 
-
     }
 
 }

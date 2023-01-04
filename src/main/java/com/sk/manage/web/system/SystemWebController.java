@@ -36,10 +36,7 @@ public class SystemWebController {
 	@GetMapping("/detail/{sysId}")
 	public String detail(@PathVariable Long sysId, Model model) {
 		log.info("system detail, system id is {}", sysId);
-		SystemDetailDto systemDetailDto = systemService.systemDetailDto(sysId);
-		
-		model.addAttribute("detailDto", systemDetailDto);
-		
+		model.addAttribute("detailDto", systemService.systemDetailDto(sysId));
 		return "system/detail";
 	}
 }
