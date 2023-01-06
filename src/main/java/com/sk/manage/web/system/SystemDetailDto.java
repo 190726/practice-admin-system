@@ -20,12 +20,12 @@ public class SystemDetailDto {
 	
 	private Long id;
 	private String name;
-	private List<UserSimpleDto> users;
+	private List<SystemUserDto> users;
 	private List<SystemDBDto> dbs;
 	
 	@Builder
 	public SystemDetailDto(Long id, String name,
-			List<UserSimpleDto> users, List<SystemDBDto> dbs) {
+			List<SystemUserDto> users, List<SystemDBDto> dbs) {
 		this.id = id;
 		this.name = name;
 		this.users = users;

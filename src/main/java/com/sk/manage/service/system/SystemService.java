@@ -10,12 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sk.manage.domain.system.System;
 import com.sk.manage.domain.system.SystemRepository;
 import com.sk.manage.domain.system.SystemUser;
+import com.sk.manage.domain.system.SystemUserRepository;
 import com.sk.manage.domain.user.User;
 import com.sk.manage.domain.user.UserRepository;
 import com.sk.manage.web.system.SystemDBDto;
 import com.sk.manage.web.system.SystemDetailDto;
 import com.sk.manage.web.system.SystemRequestDto;
 import com.sk.manage.web.system.SystemResponseDto;
+import com.sk.manage.web.system.SystemUserDto;
 import com.sk.manage.web.user.UserSimpleDto;
 
 import lombok.RequiredArgsConstructor;
@@ -27,6 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SystemService {
 
 	private final SystemRepository systemRepository;
+	private final SystemUserRepository systemUserRepository;
 	private final UserRepository userRepository;
 	
 	public System findById(Long id) {
@@ -64,10 +67,10 @@ public class SystemService {
 	public SystemDetailDto systemDetailDto(Long systemId) {
 		System findSystem = systemRepository.findDetailById(systemId);
 		
-		List<UserSimpleDto> users = findSystem.getSystemUsers().stream()
+		List<SystemUserDto> users = findSystem.getSystemUsers().stream()
 				.map(user -> {
 					User u = user.getUser();
-					return new UserSimpleDto(u.getSno(), u.getName());
+					return new SystemUserDto(user.getId(), u.getSno(), u.getName());
 				}).collect(Collectors.toList());
 		
 		List<SystemDBDto> dbs = findSystem.getSystemDbs().stream()
@@ -85,6 +88,12 @@ public class SystemService {
 				.dbs(dbs)
 				.build();
 		return resultDto;
+	}
+	
+	@Transactional
+	public void deleteSystemUser(Long systemUserId) {
+		SystemUser deleteSystemUser = systemUserRepository.findById(systemUserId).orElseThrow(throwEx(String.valueOf(systemUserId)));
+		systemUserRepository.delete(deleteSystemUser);
 	}
 
 	private SystemResponseDto mappedDto(System system) {

@@ -1,4 +1,4 @@
-package com.sk.manage.web.user;
+package com.sk.manage.web.system;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +11,10 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserSimpleDto {
+public class SystemUserDto {
 	
-	
+	private Long systemUserId;
 	private String sno;
 	private String name;
-	
 
 }

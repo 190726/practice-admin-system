@@ -32,4 +32,12 @@ public class SystemApiController {
 		log.debug("saving system data is {}", requestDto);
 		return systemService.save(requestDto);
 	}
+	
+	@PostMapping("/system/user/delete")
+	public Long deleteSystemUser(@RequestBody SystemUserDto systemUserDto) {
+		log.info("delete systemUserId is {}", systemUserDto.getSystemUserId());
+		systemService.deleteSystemUser(systemUserDto.getSystemUserId());
+		return 0L;
+	}
+	
 }

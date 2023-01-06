@@ -29,7 +29,10 @@
 					<h6 class="mb-0" th:text="${user.name}">이상국</h6>
 					<p class="mb-0 opacity-75" th:text="${user.sno}">190726</p>
 				</div>
-				<small class="opacity-50 text-nowrap" th:text="${i.count}">1</small>
+
+				<!-- <small class="opacity-50 text-nowrap" th:text="${i.count}">1</small> -->
+				<button type="button" class="btn btn-secondary btn-user-delete"
+				style="font-size: .45rem;" th:value="${user.systemUserId}" >delete</button>
 			</div>
 		</a> 
 	</div>
@@ -55,8 +58,8 @@
 </table>
 	
 </div>
+<script type="text/javascript" th:src="@{/js/app/system/detail.js}" src="../../static/js/app/system/detail.js"></script>
 </section>
-</body>
 
-</script>
+</body>
 </html>
