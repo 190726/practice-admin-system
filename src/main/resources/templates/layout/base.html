@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html th:fragment="layout (title, content)" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title th:replace="${title}">레이아웃 타이틀</title>
-	<meta charset="utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>Dashboard - API Admin</title>
-	<link href="/css/simple-datatables-style.css" rel="stylesheet" />
-	<link href="/css/styles.css" rel="stylesheet" />
-	<script src="/js/lib/font-awesome-all.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
-	<link rel="stylesheet" type="text/css" href="/datepicker/datepicker.css">
+    <title th:replace="${title}">레이아웃 타이틀</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Dashboard - API Admin</title>
+    <link href="/css/simple-datatables-style.css" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" /><!--bootstrap admin version-->
+    <script src="/js/lib/font-awesome-all.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="/datepicker/datepicker.css">
     <script type="text/javascript" charset="utf8" src="/js/lib/jquery-1.12.4.min.js"></script>
-     <style>
+    <link href="/css/common.css" rel="stylesheet" />
+    <style>
 	    body{
 	    	font-size : 0.8em;
 	    }
@@ -54,12 +55,12 @@
                     <div class="sb-sidenav-menu-heading">Core</div>
                     <a class="nav-link" href="/system/list">
                         <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                        	Systems
+                        Systems
                     </a>
                     <div class="sb-sidenav-menu-heading">STATIC</div>
                     <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                         <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                        	호출 통계
+                        호출 통계
                         <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                     </a>
                     <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
@@ -117,24 +118,24 @@
         </nav>
     </div>
 
-	<div id="layoutSidenav_content">   
-		<div  th:replace="${content}">
-			<p>레이아웃 컨텐츠</p>
-		</div>
-	
-		<footer class="py-4 bg-light mt-auto">
-		   <div class="container-fluid px-4">
-		       <div class="d-flex align-items-center justify-content-between small">
-		           <div class="text-muted">Copyright &copy; Your Website 2021</div>
-		           <div>
-		               <a href="#">Privacy Policy</a>
-		               &middot;
-		               <a href="#">Terms &amp; Conditions</a>
-		           </div>
-		       </div>
-		   </div>
-		</footer>
-	</div>
+    <div id="layoutSidenav_content">
+        <div  th:replace="${content}">
+            <p>레이아웃 컨텐츠</p>
+        </div>
+
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid px-4">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Copyright &copy; Your Website 2021</div>
+                    <div>
+                        <a href="#">Privacy Policy</a>
+                        &middot;
+                        <a href="#">Terms &amp; Conditions</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
 </div>
 </body>
 

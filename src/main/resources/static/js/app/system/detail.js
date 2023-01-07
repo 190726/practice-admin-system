@@ -19,7 +19,7 @@ var systemDetail = {
 				data: JSON.stringify(data)
 			}).done(function(){
 				alert('삭제되었습니다.');
-				$(clickBtn).parent().parent().hide();
+				$(clickBtn).parent().parent().remove();
 			}).fail(function(error){
 				alert(JSON.stringify(error))
 			});
