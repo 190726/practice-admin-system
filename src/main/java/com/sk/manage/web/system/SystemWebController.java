@@ -32,6 +32,13 @@ public class SystemWebController {
 		model.addAttribute("systems", systems);
 		return "system/list";
 	}
+
+	@GetMapping("/new-user/{sysId}")
+	public String newUser(@PathVariable Long sysId, Model model){
+		log.info("new system user, system id is {}", sysId);
+		model.addAttribute("id", sysId);
+		return "system/new-user";
+	}
 	
 	@GetMapping("/detail/{sysId}")
 	public String detail(@PathVariable Long sysId, Model model) {

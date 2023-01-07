@@ -6,6 +6,8 @@
     <title>System Detail</title>
     <link th:href="@{/css/bootstrap.min.css}"
           href="../../static/css/bootstrap.css" rel="stylesheet">
+	<link th:href="@{/css/common.css}"
+		  href="../../static/css/common.css" rel="stylesheet">
 </head>
 <body>
 <section>
@@ -16,7 +18,11 @@
 	  <span  th:text="${detailDto.name}"></span> System Detail
 	</div>
 	
-	<h4 class="mt-4 content-heading"> 담당자</h4>
+	<h4 class="mt-4 content-heading"> 담당자
+		<a th:href="@{/system/new-user/{sysId}(sysId = ${detailDto.id})}" class="btn btn-primary"
+		   style="font-size: .45rem;">new</a>
+
+	</h4>
 	
 	<div class="list-group w-auto">
 		<a href="#"
@@ -35,7 +41,10 @@
 		</a> 
 	</div>
 	
-	<h4 class="mt-4 content-heading"> DB 정보</h4>
+	<h4 class="mt-4 content-heading"> DB 정보
+		<button type="button" class="btn btn-primary btn-db-add"
+				style="font-size: .45rem;"  >new</button>
+	</h4>
 	<table class="table">
 	  <thead>
 	    <tr >
