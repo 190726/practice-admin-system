@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sk.manage.service.system.SystemService;
+import com.sk.manage.service.user.UserService;
+import com.sk.manage.web.user.UserResponseDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SystemWebController {
 	
 	private final SystemService systemService;
+	private final UserService userService;
 	
 	@GetMapping("/save")
 	public String saveForm() {
@@ -36,7 +39,8 @@ public class SystemWebController {
 	@GetMapping("/new-user/{sysId}")
 	public String newUser(@PathVariable Long sysId, Model model){
 		log.info("new system user, system id is {}", sysId);
-		model.addAttribute("id", sysId);
+		model.addAttribute("system", systemService.findById(sysId));
+		model.addAttribute("users", userService.allUsers());
 		return "system/new-user";
 	}
 	

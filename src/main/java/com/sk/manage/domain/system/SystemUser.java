@@ -7,7 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-@Table(name = "system_user")
+@Table(name = "system_user", indexes = @Index(name="idx_system_user", columnList = "system_id, user_id", unique = true))
 @NoArgsConstructor
 @ToString
 @Getter

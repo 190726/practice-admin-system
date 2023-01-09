@@ -12,28 +12,27 @@
 <body>
 <section>
 
+<input type="hidden" id="systemId" th:value="${system.id}"/>
 <div class="container" id="containers">
 
 	<div style="margin-top: 5px;padding: 5px;">
-	  <span  th:text="${id}"></span> New System User
+	  [<span  th:text="${system.name}"></span>] New System User
 	</div>
 
 	<div class="input-group mb-3 mt-4">
-		<label class="input-group-text" for="inputGroupSelect01">User</label>
-		<select class="form-select" id="inputGroupSelect01">
+		<label class="input-group-text" for="inputUserGroup">User</label>
+		<select class="form-select" id="inputUserGroup">
 			<option selected>----선택----</option>
-			<option value="1">One</option>
-			<option value="2">Two</option>
-			<option value="3">Three</option>
+			<option th:each="user : ${users}" th:value="${user.sno}" th:text="${user.name + '/' + user.sno}">One</option>
 		</select>
 	</div>
 
 	<div class="d-grid gap-2">
-		<button class="btn btn-primary" type="button">등록</button>
+		<button class="btn btn-primary btn-user-add" type="button">등록</button>
 	</div>
 
 </div>
-<script type="text/javascript" th:src="@{/js/app/system/detail.js}" src="../../static/js/app/system/detail.js"></script>
+<script type="text/javascript" th:src="@{/js/app/system/new-user.js}" src="../../static/js/app/system/new-user.js"></script>
 </section>
 
 </body>

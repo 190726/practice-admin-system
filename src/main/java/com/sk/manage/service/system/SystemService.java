@@ -32,10 +32,10 @@ public class SystemService {
 	private final SystemUserRepository systemUserRepository;
 	private final UserRepository userRepository;
 	
-	public System findById(Long id) {
-		return systemRepository
-				.findById(id)
-				.orElseThrow(()->new IllegalStateException("NotFound at systemId: " + id));
+	public SystemResponseDto findById(Long id) {
+		
+		return systemRepository.findById(id).map(sys -> mappedDto(sys)).orElseThrow(throwEx(id+""));
+		
 	}
 	
 	public Long save(SystemRequestDto requestDto) {

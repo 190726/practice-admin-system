@@ -33,11 +33,17 @@ public class SystemApiController {
 		return systemService.save(requestDto);
 	}
 	
+	@PostMapping("/system/user/add")
+	public Long addSystemUser(@RequestBody SystemUserDto systemUserDto) {
+		systemService.enrolledSystemUser(systemUserDto.getSystemId(), systemUserDto.getSno());
+		return 1L;
+	}
+	
 	@PostMapping("/system/user/delete")
 	public Long deleteSystemUser(@RequestBody SystemUserDto systemUserDto) {
 		log.info("delete systemUserId is {}", systemUserDto.getSystemUserId());
 		systemService.deleteSystemUser(systemUserDto.getSystemUserId());
-		return 0L;
+		return 1L;
 	}
 	
 }
