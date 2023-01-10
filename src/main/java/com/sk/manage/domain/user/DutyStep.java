@@ -19,6 +19,10 @@ public enum DutyStep {
         this.code = code;
         this.name = name;
     }
+    
+    public String getName() {
+    	return name;
+    }
 
     public static DutyStep findDutyStepByName(String dutyStepName){
         return Arrays.stream(DutyStep.values()).filter(ds -> ds.name.equals(dutyStepName)).findAny().orElseThrow(()->new IllegalArgumentException("there is no matched duty step about '" + dutyStepName + "'"));

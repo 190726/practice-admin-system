@@ -1,6 +1,7 @@
 package com.sk.learned;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class LocalDateTimeTest {
@@ -13,5 +14,9 @@ public class LocalDateTimeTest {
         LocalDate localDate = LocalDate.now();
         String strLocalDate = localDate.format(DateTimeFormatter.BASIC_ISO_DATE);
         System.out.println(strLocalDate);
+        
+        String strDate = "2023-01-09";
+        LocalDateTime.parse(strDate);
+        		
     }
 }

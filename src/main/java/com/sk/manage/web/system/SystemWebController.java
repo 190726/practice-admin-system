@@ -18,7 +18,7 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/system")
+@RequestMapping("/web/system")
 public class SystemWebController {
 	
 	private final SystemService systemService;

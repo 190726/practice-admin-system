@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/base :: layout(~{::title},~{::section})}"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>New User</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link th:href="@{/css/common.css}"
+		  href="../../static/css/common.css" rel="stylesheet">
+</head>
+<body>
+<section>
+
+<div class="container" id="containers">
+
+	<div class="form-group">
+	
+		<label for="snoInput">사번</label>
+	    <input type="text" class="form-control mb-4" id="snoInput" placeholder="190726">
+	    
+	    <label for="nameInput">이름</label>
+	    <input type="text" class="form-control mb-4" id="nameInput" placeholder="홍길동">
+	    
+	    <label for="dutyStepSelect">직급</label>
+	    <select class="form-control mb-4" id="dutyStepSelect">
+	      	<option th:each="dutyStep : ${T(com.sk.manage.domain.user.DutyStep).values()}"
+		       	th:value="${dutyStep}" th:text="${dutyStep.name}">
+	       	</option>
+	    </select>
+	    
+	    <label for="dateInput">입사일</label>
+	    <input type="date" class="form-control mb-4" id="dateInput" placeholder="2023-01-01">
+	    
+	</div>
+	<div class="d-grid gap-2">
+		<button class="btn btn-primary btn-user-add" type="button">등록</button>
+	</div>
+	
+</div>
+<script type="text/javascript" th:src="@{/js/app/user/new.js}" src="../../static/js/app/user/new.js"></script>
+</section>
+
+</body>
+</html>

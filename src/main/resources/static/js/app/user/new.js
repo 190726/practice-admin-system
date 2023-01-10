@@ -1,31 +1,32 @@
-var newSystemUser = {
+var newUser = {
 		init : function(){
 			var _this = this;
 			$('.btn-user-add').on('click', function(){
-				_this.addUser();
+				_this.newUser();
 			});
 		},
-		addUser : function(){
+		newUser : function(){
 			
 			var data = {
-					
-					sno : $("#inputUserGroup option:selected").val(),
-					systemId : $("#systemId").val()
+					sno : $("#snoInput").val(),
+					name : $("#nameInput").val(),
+					dutyStep : $("#dutyStepSelect option:selected").val(),
+					enterDate : $("#dateInput").val()
 			};
 			
 			$.ajax({
 				type: 'POST',
-				url: '/api/system/user/add',
+				url: '/api/user/add',
 				dataType: 'json',
 				contentType: 'application/json; charset=utf-8',
 				data: JSON.stringify(data)
 			}).done(function(){
-				alert('추가되었습니다.');
-				location.href = "/web/system/detail/" + $("#systemId").val(); 
+				alert('등록되었습니다.');
+				location.href = "/web/user/list";
 			}).fail(function(error){
 				alert(JSON.stringify(error))
 			});
 		}
 }
 
-newSystemUser.init();
+newUser.init();
