@@ -28,7 +28,7 @@ class SystemServiceTest {
     }
 
     static User createUser(){
-        String sno1 = "190726";
+        Integer sno1 = 190726;
         String name1 = "이상국";
         DutyStep dutyStep1 = DutyStep.MANAGER;
         LocalDateTime enterDate1 = LocalDateTime.of(2022, 12, 22, 0,0,0);

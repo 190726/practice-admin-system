@@ -12,14 +12,14 @@ import lombok.ToString;
 @NoArgsConstructor
 public class UserResponseDto {
 
-    private String sno;
+    private Integer sno;
     private String name;
     private String dutyStep;
     private String enterDate;
     private String retireDate;
     
     @Builder
-    public UserResponseDto(String sno, String name, String dutyStep,
+    public UserResponseDto(Integer sno, String name, String dutyStep,
     		String enterDate, String retireDate) {
     	this.sno = sno;
     	this.name = name;

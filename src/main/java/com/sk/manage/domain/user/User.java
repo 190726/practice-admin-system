@@ -17,7 +17,7 @@ public class User extends BaseTimeEntity {
 
 	@Id
 	@Column(name = "user_id")
-	private String sno;
+	private Integer sno;
 
 	private String name;
 
@@ -28,7 +28,7 @@ public class User extends BaseTimeEntity {
 
 	private LocalDateTime retireDate;
 	@Builder
-	public User(String sno, String name, DutyStep dutyStep,
+	public User(Integer sno, String name, DutyStep dutyStep,
 				LocalDateTime enterDate, LocalDateTime retireDate){
 		this.sno = sno;
 		this.name = name;

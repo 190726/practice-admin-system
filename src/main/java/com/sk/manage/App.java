@@ -42,13 +42,13 @@ public class App {
 		//테이블생성(schema.sql) 스크립트보다 빨리 실행됨. 테이블이 미생성되어 있는 경우, 오류
 		return args -> {
 
-			String sno1 = "190726";
+			Integer sno1 = 190726;
 			String name1 = "이상국";
 			DutyStep dutyStep1 = DutyStep.MANAGER;
 			LocalDateTime enterDate1 = LocalDateTime.of(2016, 03, 07, 0,0,0);
 			User user1 = User.builder().sno(sno1).name(name1).dutyStep(dutyStep1).enterDate(enterDate1).build();
 
-			String sno2 = "191764";
+			Integer sno2 = 191764;
 			String name2 = "신제원";
 			DutyStep dutyStep2 = DutyStep.MANAGER;
 			LocalDateTime enterDate2 = LocalDateTime.of(2022, 04, 22, 0,0,0);

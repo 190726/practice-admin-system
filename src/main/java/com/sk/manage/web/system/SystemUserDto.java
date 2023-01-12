@@ -15,10 +15,10 @@ public class SystemUserDto {
 	
 	private Long systemId;
 	private Long systemUserId;
-	private String sno;
+	private Integer sno;
 	private String name;
 	
-	public SystemUserDto(Long systemUserId, String sno, String name) {
+	public SystemUserDto(Long systemUserId, Integer sno, String name) {
 		this.systemUserId = systemUserId;
 		this.sno = sno;
 		this.name = name;

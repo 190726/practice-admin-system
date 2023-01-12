@@ -22,7 +22,7 @@ class UserTest {
     @DisplayName("사용자 등록 테스트")
     void user_등록(){
         //given
-        String sno = "190726";
+        Integer sno = 190726;
         String name = "이상국";
         DutyStep dutyStep = DutyStep.MANAGER;
         LocalDateTime enterDate = LocalDateTime.of(2022, 12, 22, 0,0,0);
@@ -30,8 +30,7 @@ class UserTest {
 
         //when
         userRepository.save(user);
-
-        User findUser = userRepository.findById("190726").orElseThrow(() -> new RuntimeException("no user"));
+        User findUser = userRepository.findBySno(190726).orElseThrow(() -> new RuntimeException("no user"));
 
         System.out.println(findUser);
         //then

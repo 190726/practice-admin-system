@@ -1,5 +1,6 @@
 package com.sk.manage.web.user;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class UserApiController {
     private final UserService userService;
 
     @PostMapping("/user/add")
-    public Long add(@RequestBody UserRequestDto requestDto){
+    public Long add(@RequestBody @Validated  UserRequestDto requestDto){
     	userService.save(requestDto);
         return 1L;
     }

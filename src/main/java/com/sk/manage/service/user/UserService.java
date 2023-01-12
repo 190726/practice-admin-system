@@ -35,7 +35,7 @@ public class UserService {
     }
 
     @Transactional
-	public String save(UserRequestDto requestDto) {
+	public Integer save(UserRequestDto requestDto) {
 		User user = User.builder()
 			.sno(requestDto.getSno())
 			.name(requestDto.getName())

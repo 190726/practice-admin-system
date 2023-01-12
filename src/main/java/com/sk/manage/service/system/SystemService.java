@@ -34,7 +34,7 @@ public class SystemService {
 	
 	public SystemResponseDto findById(Long id) {
 		
-		return systemRepository.findById(id).map(sys -> mappedDto(sys)).orElseThrow(throwEx(id+""));
+		return systemRepository.findById(id).map(sys -> mappedDto(sys)).orElseThrow(throwEx(id));
 		
 	}
 	
@@ -56,8 +56,8 @@ public class SystemService {
 	}
 
 	@Transactional
-	public System enrolledSystemUser(Long systemId, String userId) {
-		User user = userRepository.findById(userId).orElseThrow(throwEx(userId));
+	public System enrolledSystemUser(Long systemId, Integer userId) {
+		User user = userRepository.findBySno(userId).orElseThrow(throwEx(userId));
 		System system = systemRepository.findById(systemId).orElseThrow(throwEx(userId));
 		SystemUser systemUser = SystemUser.createSystemUser(system, user);
 		return system.enrolledSystemUser(systemUser);
@@ -92,7 +92,7 @@ public class SystemService {
 	
 	@Transactional
 	public void deleteSystemUser(Long systemUserId) {
-		SystemUser deleteSystemUser = systemUserRepository.findById(systemUserId).orElseThrow(throwEx(String.valueOf(systemUserId)));
+		SystemUser deleteSystemUser = systemUserRepository.findById(systemUserId).orElseThrow(throwEx(systemUserId));
 		systemUserRepository.delete(deleteSystemUser);
 	}
 
@@ -103,7 +103,7 @@ public class SystemService {
 				system.getDesc());
 	}
 	
-	private Supplier<IllegalStateException> throwEx(String id){
+	private Supplier<IllegalStateException> throwEx(Number id){
 		return () -> new IllegalStateException("no exist data, pk:" + id);
 	}
 }
