@@ -20,6 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import com.sk.manage.domain.system.SystemRepository;
 import com.sk.manage.domain.user.UserRepository;
 import com.sk.manage.service.system.SystemService;
+import com.sk.manage.service.user.UserService;
 
 
 @MockBean(value = JpaMetamodelMappingContext.class)
@@ -33,6 +34,9 @@ class SystemWebControllerTest {
 	private SystemService systemService;
 	
 	@MockBean
+	private UserService userService;
+	
+	@MockBean
 	private SystemRepository systemRepository;
 	
 	@MockBean
@@ -43,7 +47,7 @@ class SystemWebControllerTest {
 		SystemResponseDto dto1 = new SystemResponseDto(1L, "mobile", LocalDate.now(), "desc");
 		BDDMockito.given(systemService.findAll()).willReturn(Collections.singletonList(dto1));
 		
-		mvc.perform(MockMvcRequestBuilders.get("/system/list"))
+		mvc.perform(MockMvcRequestBuilders.get("/web/system/list"))
 		.andExpect(status().isOk())
 		.andExpect(view().name("system/list"))
 		.andExpect(model().attributeExists("systems"))

@@ -25,5 +25,4 @@ public class UserRequestDto {
     private String dutyStep;
     
     private String enterDate;
-
 }

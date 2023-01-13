@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final UserValidator userValidator;
 
     public List<UserResponseDto> allUsers() {
         List<User> users = userRepository.findAll();
@@ -42,6 +43,9 @@ public class UserService {
 			.dutyStep(DutyStep.valueOf(requestDto.getDutyStep()))
 			.enterDate(LocalDate.parse(requestDto.getEnterDate()).atTime(0, 0))
 			.build();
+		
+		userValidator.validate(user);
+		
 		return userRepository.save(user).getSno();
 	}
 

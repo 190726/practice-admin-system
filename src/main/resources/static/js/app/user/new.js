@@ -28,18 +28,26 @@ var newUser = {
 			}).fail(function(error){
 				
 				console.log(error);
-				let errInfo = error.responseJSON.errors[0];
 				
-				const alertPlaceholder = document.getElementById('errPlaceHolder');
-				alertDiv(errInfo.defaultMessage, 'success', alertPlaceholder);
-				  
-				let errField = errInfo.field;
-				
-				if(errField=="sno"){
-					borderDanger('snoInput');
-				}else if(errField=="name"){
-					borderDanger('nameInput');
+				if(error.responseJSON.code){
+					alert(error.responseJSON.message);
+				}else if(error.responseJSON.errors){
+					let errInfo = error.responseJSON.errors[0];
+					
+					const alertPlaceholder = document.getElementById('errPlaceHolder');
+					alertDiv(errInfo.defaultMessage, 'success', alertPlaceholder);
+					  
+					let errField = errInfo.field;
+					
+					if(errField=="sno"){
+						borderDanger('snoInput');
+					}else if(errField=="name"){
+						borderDanger('nameInput');
+					}
+				}else{
+					alert(error.responseJSON.message);
 				}
+				
 			});
 		}
 }
