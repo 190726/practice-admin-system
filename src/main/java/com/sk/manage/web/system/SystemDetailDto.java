@@ -22,13 +22,18 @@ public class SystemDetailDto {
 	private String name;
 	private List<SystemUserDto> users;
 	private List<SystemDBDto> dbs;
+	private String urlInfo;
+	private String serverInfo;
 	
 	@Builder
 	public SystemDetailDto(Long id, String name,
-			List<SystemUserDto> users, List<SystemDBDto> dbs) {
+			List<SystemUserDto> users, List<SystemDBDto> dbs,
+			String urlInfo, String serverInfo) {
 		this.id = id;
 		this.name = name;
 		this.users = users;
 		this.dbs = dbs;
+		this.urlInfo = urlInfo;
+		this.serverInfo = serverInfo;
 	}
 }

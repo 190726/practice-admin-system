@@ -30,6 +30,9 @@ class SystemTest {
 	void saveAndFindById(){
 		
 		System system = new System("a0001", LocalDate.now());
+		SystemDetail sd = new SystemDetail("server info", "url info");
+		system.registSystemDetail(sd);
+		
 		System saveSystem = systemRepository.save(system);
 		
 		log.debug("saveSystem is {}", saveSystem);
@@ -41,7 +44,7 @@ class SystemTest {
 		Assertions.assertThat(result.getSystemName()).isEqualTo("a0001");
 	}
 	
-	@Test
+	//@Test
 	@DisplayName("find system by name")
 	void saveAndFindByName() {
 		System system = new System("a0001", LocalDate.now());

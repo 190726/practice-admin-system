@@ -34,6 +34,9 @@ public class System extends BaseTimeEntity {
 	@CollectionTable(name = "SYSTEM_DB",
 			         joinColumns = @JoinColumn(name="SYSTEM_DB_ID"))
 	private List<SystemDB> systemDbs = new ArrayList<>();
+	
+	@Embedded
+	private SystemDetail systemDetail;
 
 	public System(long id, String name, LocalDate openDate) {
 		validateName(name);
@@ -85,6 +88,14 @@ public class System extends BaseTimeEntity {
 	public System addSystemDbInfo(SystemDB systemDb) {
 		systemDbs.add(systemDb);
 		return this;
+	}
+	
+	public void registSystemDetail(SystemDetail systemDetail) {
+		this.systemDetail = systemDetail;
+	}
+	
+	public SystemDetail getSystemDetail() {
+		return this.systemDetail;
 	}
 
 	private void validateName(String name) {

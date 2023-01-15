@@ -86,6 +86,8 @@ public class SystemService {
 				.name(findSystem.getSystemName())
 				.users(users)
 				.dbs(dbs)
+				.urlInfo(findSystem.getSystemDetail().getUrlInfo())
+				.serverInfo(findSystem.getSystemDetail().getServerInfo())
 				.build();
 		return resultDto;
 	}

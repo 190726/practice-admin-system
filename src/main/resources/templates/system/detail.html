@@ -21,7 +21,6 @@
 	<h4 class="mt-4 content-heading"> 담당자
 		<a th:href="@{/web/system/new-user/{sysId}(sysId = ${detailDto.id})}" class="btn btn-primary"
 		   style="font-size: .45rem;">new</a>
-
 	</h4>
 	
 	<div class="list-group w-auto">
@@ -46,23 +45,39 @@
 				style="font-size: .45rem;"  >new</button>
 	</h4>
 	<table class="table">
-	  <thead>
-	    <tr >
-	      <th scope="col">Type</th>
-	      <th scope="col">Url</th>
-	      <th scope="col">UserId</th>
-	      <th scope="col">UserPwd</th>
-	    </tr>
-	  </thead>
-	  <tbody class="table-group-divider" >
-	    <tr th:each="db, i: ${detailDto.dbs}">
-	      <th scope="row" th:text="${db.dbType}">1</th>
-	      <td th:text="${db.url}">Mark</td>
-	      <td th:text="${db.userId}">Otto</td>
-	      <td th:text="${db.userPwd}">@mdo</td>
-	    </tr>
-	  </tbody>
-</table>
+		<thead>
+			<tr>
+				<th scope="col">Type</th>
+				<th scope="col">Url</th>
+				<th scope="col">UserId</th>
+				<th scope="col">UserPwd</th>
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
+			<tr th:each="db, i: ${detailDto.dbs}">
+				<th scope="row" th:text="${db.dbType}">1</th>
+				<td th:text="${db.url}">Mark</td>
+				<td th:text="${db.userId}">Otto</td>
+				<td th:text="${db.userPwd}">@mdo</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<h4 class="mt-4 content-heading"> URL 정보
+		<button type="button" class="btn btn-primary btn-url-update"
+				style="font-size: .45rem;"  >수정</button>
+	</h4>
+	<div class="card-body">
+		<p class="card-text" th:text="${detailDto.urlInfo}">https://</p>
+	</div>
+	
+	<h4 class="mt-4 content-heading"> 서버 정보
+		<button type="button" class="btn btn-primary btn-server-update"
+				style="font-size: .45rem;"  >수정</button>
+	</h4>
+	<div class="card-body">
+		<p class="card-text" th:text="${detailDto.serverInfo}">serverInfo</p>
+	</div>
 	
 </div>
 <script type="text/javascript" th:src="@{/js/app/system/detail.js}" src="../../static/js/app/system/detail.js"></script>
