@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sk.manage.domain.system.System;
+import com.sk.manage.domain.system.SystemDetail;
 import com.sk.manage.domain.system.SystemRepository;
 import com.sk.manage.domain.system.SystemUser;
 import com.sk.manage.domain.system.SystemUserRepository;
@@ -18,7 +19,6 @@ import com.sk.manage.web.system.SystemDetailDto;
 import com.sk.manage.web.system.SystemRequestDto;
 import com.sk.manage.web.system.SystemResponseDto;
 import com.sk.manage.web.system.SystemUserDto;
-import com.sk.manage.web.user.UserSimpleDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,6 @@ public class SystemService {
 	private final UserRepository userRepository;
 	
 	public SystemResponseDto findById(Long id) {
-		
 		return systemRepository.findById(id).map(sys -> mappedDto(sys)).orElseThrow(throwEx(id));
 		
 	}
@@ -63,7 +62,7 @@ public class SystemService {
 		return system.enrolledSystemUser(systemUser);
 	}
 	
-	@Transactional
+	@Transactional(readOnly = true)
 	public SystemDetailDto systemDetailDto(Long systemId) {
 		System findSystem = systemRepository.findDetailById(systemId);
 		
@@ -81,13 +80,15 @@ public class SystemService {
 						,sdb.getUserPwd());
 		}).collect(Collectors.toList());
 		
+		SystemDetail systemDetail = findSystem.getSystemDetail().map(t->t).orElse(new SystemDetail("", ""));
+		
 		SystemDetailDto resultDto = SystemDetailDto.builder()
 				.id(systemId)
 				.name(findSystem.getSystemName())
 				.users(users)
 				.dbs(dbs)
-				.urlInfo(findSystem.getSystemDetail().getUrlInfo())
-				.serverInfo(findSystem.getSystemDetail().getServerInfo())
+				.urlInfo(systemDetail.getUrlInfo())
+				.serverInfo(systemDetail.getServerInfo())
 				.build();
 		return resultDto;
 	}
@@ -98,14 +99,21 @@ public class SystemService {
 		systemUserRepository.delete(deleteSystemUser);
 	}
 
+	@Transactional
+	public void detailSave(SystemDetailDto systemDetailDto) {
+		System system = systemRepository.findById(systemDetailDto.getId())
+				.orElseThrow(()->new IllegalArgumentException("no system id:" +systemDetailDto.getId() ));
+		system.registSystemDetail(new SystemDetail(systemDetailDto.getUrlInfo(), systemDetailDto.getServerInfo()));
+	}
+	
+	private Supplier<IllegalStateException> throwEx(Number id){
+		return () -> new IllegalStateException("no exist data, pk:" + id);
+	}
+	
 	private SystemResponseDto mappedDto(System system) {
 		return new SystemResponseDto(system.getSystemId(),
 				system.getSystemName(),
 				system.getSystemOpenDate(),
 				system.getDesc());
-	}
-	
-	private Supplier<IllegalStateException> throwEx(Number id){
-		return () -> new IllegalStateException("no exist data, pk:" + id);
 	}
 }

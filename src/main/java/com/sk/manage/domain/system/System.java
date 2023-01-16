@@ -3,6 +3,7 @@ package com.sk.manage.domain.system;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.*;
 
@@ -94,8 +95,9 @@ public class System extends BaseTimeEntity {
 		this.systemDetail = systemDetail;
 	}
 	
-	public SystemDetail getSystemDetail() {
-		return this.systemDetail;
+	public Optional<SystemDetail> getSystemDetail() {
+		return Optional.ofNullable(systemDetail);
+		//return this.systemDetail;
 	}
 
 	private void validateName(String name) {

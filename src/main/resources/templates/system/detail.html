@@ -12,6 +12,7 @@
 <body>
 <section>
 
+<input type="hidden" id="systemId" th:value="${detailDto.id}"/>
 <div class="container" id="containers">
 
 	<div class="bg-primary text-light" style="margin-top: 5px;padding: 5px;">
@@ -65,18 +66,29 @@
 	
 	<h4 class="mt-4 content-heading"> URL 정보
 		<button type="button" class="btn btn-primary btn-url-update"
-				style="font-size: .45rem;"  >수정</button>
+				style="font-size: .45rem;"  >입력</button>
 	</h4>
-	<div class="card-body">
-		<p class="card-text" th:text="${detailDto.urlInfo}">https://</p>
+	
+	<div class="form-floating">
+	  <textarea class="form-control" placeholder="Leave a comment here" 
+	  	id="urlInfoTextarea" th:value="${detailDto.urlInfo}" th:text="${detailDto.urlInfo}" readOnly></textarea>
+	  <label for="urlInfoTextarea">UrlInfo</label>
 	</div>
 	
 	<h4 class="mt-4 content-heading"> 서버 정보
 		<button type="button" class="btn btn-primary btn-server-update"
-				style="font-size: .45rem;"  >수정</button>
+				style="font-size: .45rem;"  >입력</button>
 	</h4>
-	<div class="card-body">
-		<p class="card-text" th:text="${detailDto.serverInfo}">serverInfo</p>
+	
+	<div class="form-floating">
+	  <textarea class="form-control" placeholder="Leave a comment here" 
+	  	id="serverInfoTextarea" th:value="${detailDto.serverInfo}" th:text="${detailDto.serverInfo}" readOnly></textarea>
+	  <label for="serverInfoTextarea">ServerInfo</label>
+	</div>
+	
+	<div id="errPlaceHolder"></div>
+	<div class="d-grid gap-2 mt-4">
+		<button class="btn btn-primary btn-detail-save" type="button">저장</button>
 	</div>
 	
 </div>

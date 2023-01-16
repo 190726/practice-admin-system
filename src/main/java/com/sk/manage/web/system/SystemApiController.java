@@ -46,4 +46,11 @@ public class SystemApiController {
 		return 1L;
 	}
 	
+	@PostMapping("/system/detail/save")
+	public Long systemDetailSave(@RequestBody SystemDetailDto systemDetailDto) {
+		log.info("System Detail Save Date is {}", systemDetailDto);
+		systemService.detailSave(systemDetailDto);
+		return 1L;
+	}
+	
 }
