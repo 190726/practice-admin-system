@@ -70,7 +70,7 @@ public class App {
 			system1Dbdev.setUserPwd("dongbuweb");
 			system1.addSystemDbInfo(system1Dbdev);
 			
-			SystemDetail systemDetail1 = new SystemDetail("http://systemDetail.home", null);
+			SystemDetail systemDetail1 = new SystemDetail("http://systemDetail.home", null, "기타");
 			system1.registSystemDetail(systemDetail1);
 			
 			SystemDB system1DbReal = new SystemDB();

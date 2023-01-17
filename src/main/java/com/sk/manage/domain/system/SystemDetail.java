@@ -20,4 +20,12 @@ public class SystemDetail {
 	
 	@Column(name = "server_info")
 	private String serverInfo;
+	
+	@Column(name = "etc_info")
+	private String etcInfo;
+	
+	public static SystemDetail emptySysemDetail() {
+		return new SystemDetail("", "", "");
+	}
+	
 }

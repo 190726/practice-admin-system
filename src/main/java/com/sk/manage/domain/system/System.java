@@ -22,6 +22,7 @@ public class System extends BaseTimeEntity {
 	@Column(name = "system_id")
 	private Long id;
 	
+	@Column(nullable = false, length = 120)
 	private String name;
 	
 	private LocalDate openDate;

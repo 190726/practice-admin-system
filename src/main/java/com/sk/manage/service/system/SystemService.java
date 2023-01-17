@@ -1,5 +1,6 @@
 package com.sk.manage.service.system;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -47,7 +48,10 @@ public class SystemService {
 	
 	public List<SystemResponseDto> findAll(){
 		List<System> systems = systemRepository.findAll();
-		return systems.stream().map(sys -> mappedDto(sys)).collect(Collectors.toList());
+		return systems.stream()
+				.map(sys -> mappedDto(sys))
+				.sorted(Comparator.comparing(SystemResponseDto::getName))
+				.collect(Collectors.toList());
 	}
 
 	public List<System> findByName(String name){
@@ -80,7 +84,7 @@ public class SystemService {
 						,sdb.getUserPwd());
 		}).collect(Collectors.toList());
 		
-		SystemDetail systemDetail = findSystem.getSystemDetail().map(t->t).orElse(new SystemDetail("", ""));
+		SystemDetail systemDetail = findSystem.getSystemDetail().map(t->t).orElse(SystemDetail.emptySysemDetail());
 		
 		SystemDetailDto resultDto = SystemDetailDto.builder()
 				.id(systemId)
@@ -89,6 +93,7 @@ public class SystemService {
 				.dbs(dbs)
 				.urlInfo(systemDetail.getUrlInfo())
 				.serverInfo(systemDetail.getServerInfo())
+				.etcInfo(systemDetail.getEtcInfo())
 				.build();
 		return resultDto;
 	}
@@ -103,7 +108,9 @@ public class SystemService {
 	public void detailSave(SystemDetailDto systemDetailDto) {
 		System system = systemRepository.findById(systemDetailDto.getId())
 				.orElseThrow(()->new IllegalArgumentException("no system id:" +systemDetailDto.getId() ));
-		system.registSystemDetail(new SystemDetail(systemDetailDto.getUrlInfo(), systemDetailDto.getServerInfo()));
+		system.registSystemDetail(
+				new SystemDetail(systemDetailDto.getUrlInfo(), systemDetailDto.getServerInfo(),systemDetailDto.getEtcInfo())
+				);
 	}
 	
 	private Supplier<IllegalStateException> throwEx(Number id){

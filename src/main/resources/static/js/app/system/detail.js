@@ -13,6 +13,10 @@ var systemDetail = {
 				$('#serverInfoTextarea').attr('readOnly', false);
 			});
 			
+			$('.btn-etc-update').on('click', function(){
+				$('#etcInfoTextarea').attr('readOnly', false);
+			});
+			
 			$('.btn-detail-save').on('click', function(){
 				_this.detailSave();
 			});
@@ -43,7 +47,8 @@ var systemDetail = {
 			var data = {
 					id : $('#systemId').val(),
 					urlInfo : $('#urlInfoTextarea').val(),
-					serverInfo : $('#serverInfoTextarea').val()
+					serverInfo : $('#serverInfoTextarea').val(),
+					etcInfo : $('#etcInfoTextarea').val()
 			};
 			
 			$.ajax({
@@ -54,6 +59,9 @@ var systemDetail = {
 				data: JSON.stringify(data)
 			}).done(function(){
 				alert('저장되었습니다.');
+				$('#urlInfoTextarea').attr('readOnly', true);
+				$('#serverInfoTextarea').attr('readOnly', true);
+				$('#etcInfoTextarea').attr('readOnly', true);
 			}).fail(function(error){
 				alert(JSON.stringify(error))
 			});

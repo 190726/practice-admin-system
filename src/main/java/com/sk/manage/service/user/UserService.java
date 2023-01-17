@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,13 +25,16 @@ public class UserService {
 
     public List<UserResponseDto> allUsers() {
         List<User> users = userRepository.findAll();
-        List<UserResponseDto> results = users.stream().map(user
+        List<UserResponseDto> results = users.stream()
+        		.map(user
                         -> new UserResponseDto(user.getSno(),
                         user.getName(),
                         user.getDutyStep().getName(),
                         user.getEnterDate().format(DateTimeFormatter.BASIC_ISO_DATE),
                         (user.getRetireDate() != null ? user.getRetireDate().format(DateTimeFormatter.BASIC_ISO_DATE):"-"
                         )))
+        		.sorted(Comparator.comparing(UserResponseDto::getName)
+        				.thenComparing(UserResponseDto::getSno))
                 .collect(Collectors.toList());
         return results;
     }

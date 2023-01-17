@@ -86,6 +86,17 @@
 	  <label for="serverInfoTextarea">ServerInfo</label>
 	</div>
 	
+	<h4 class="mt-4 content-heading"> 기타 정보
+		<button type="button" class="btn btn-primary btn-etc-update"
+				style="font-size: .45rem;"  >입력</button>
+	</h4>
+	
+	<div class="form-floating">
+	  <textarea class="form-control" placeholder="Leave a comment here" 
+	  	id="etcInfoTextarea" th:value="${detailDto.etcInfo}" th:text="${detailDto.etcInfo}" readOnly></textarea>
+	  <label for="etcInfoTextarea">EtcInfo</label>
+	</div>
+	
 	<div id="errPlaceHolder"></div>
 	<div class="d-grid gap-2 mt-4">
 		<button class="btn btn-primary btn-detail-save" type="button">저장</button>

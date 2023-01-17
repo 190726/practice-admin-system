@@ -30,7 +30,7 @@ class SystemTest {
 	void saveAndFindById(){
 		
 		System system = new System("a0001", LocalDate.now());
-		SystemDetail sd = new SystemDetail("server info", "url info");
+		SystemDetail sd = new SystemDetail("server info", "url info", "etc info");
 		system.registSystemDetail(sd);
 		
 		System saveSystem = systemRepository.save(system);

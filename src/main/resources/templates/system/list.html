@@ -24,7 +24,7 @@
 	<div class="card" th:each="sys: ${systems}">
 		<div class="card-body">
 			<h5 class="card-title" th:text="${sys.name}">모바일 영업지원</h5>
-			<p class="card-text" th:text="${sys.desc}">홈페이지 대고객 서비스 전자금융거래</p>
+			<p class="card-text" th:text="${sys.desc + '(from ' + sys.openDate+')'}">홈페이지 대고객 서비스 전자금융거래</p>
 			<a th:href="@{/web/system/detail/{sysId}(sysId = ${sys.id})}" class="btn btn-primary">detail</a>
 		</div>
 	</div>
