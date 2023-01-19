@@ -3,24 +3,29 @@ package com.sk.manage;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import com.sk.manage.domain.system.SystemUser;
-import com.sk.manage.domain.user.DutyStep;
-import com.sk.manage.domain.user.User;
-import com.sk.manage.domain.user.UserRepository;
+import org.hibernate.mapping.Table;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
-import com.sk.manage.domain.system.SystemRepository;
+import com.sk.manage.domain.issue.Issue;
+import com.sk.manage.domain.issue.IssueRepository;
+import com.sk.manage.domain.issue.Tag;
+import com.sk.manage.domain.issue.TagRepository;
+import com.sk.manage.domain.issue.TimeLine;
 import com.sk.manage.domain.system.DBType;
 import com.sk.manage.domain.system.System;
 import com.sk.manage.domain.system.SystemDB;
 import com.sk.manage.domain.system.SystemDetail;
-
-import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+import com.sk.manage.domain.system.SystemRepository;
+import com.sk.manage.domain.system.SystemUser;
+import com.sk.manage.domain.user.DutyStep;
+import com.sk.manage.domain.user.User;
+import com.sk.manage.domain.user.UserRepository;
 
 @SpringBootApplication
 @EnableJpaAuditing
@@ -31,6 +36,12 @@ public class App {
 
 	@Autowired
 	UserRepository userRepository;
+	
+	@Autowired
+	IssueRepository issueRepository;
+	
+	@Autowired
+	TagRepository tagRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(App.class, args);
@@ -87,6 +98,20 @@ public class App {
 			systemRepository.save(system1);
 			systemRepository.save(system2);
 			systemRepository.save(system3);
+			
+			Issue issue = new Issue(1L, "title", "content");
+			Tag tag = new Tag("spring");
+			tagRepository.save(tag);
+			
+			issue.setTag(tag);
+			
+			TimeLine timeLine1 = new TimeLine("timeline1");
+			issue.addTimeLine(timeLine1);
+			
+			TimeLine timeLine2 = new TimeLine("timeline2");
+			issue.addTimeLine(timeLine2);
+			
+			issueRepository.save(issue);
 		};
 	}
 }
