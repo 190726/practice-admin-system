@@ -99,7 +99,7 @@ public class AppReadyEvent {
 		systemRepository.save(system2);
 		systemRepository.save(system3);
 		
-		Issue issue = new Issue(1L, "title", "content");
+		Issue issue = new Issue("title", "content");
 		Tag tag = new Tag("spring");
 		tagRepository.save(tag);
 		
