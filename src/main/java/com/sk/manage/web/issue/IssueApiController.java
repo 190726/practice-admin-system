@@ -24,10 +24,6 @@ public class IssueApiController {
 		return 1L;
 	}
 	
-	@GetMapping("/issues")
-	public List<IssueResponseDto> issueList(){
-		return issueService.issueList();
-	}
 	
 	@GetMapping("/issue/sample")
 	public Long saveTest() {

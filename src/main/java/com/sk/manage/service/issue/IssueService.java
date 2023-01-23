@@ -46,6 +46,7 @@ public class IssueService {
 		List<IssueResponseDto> results = findAllIssue.stream()
 				.map(issue -> 
 				IssueResponseDto.builder().tagName(issue.getTag().getName())
+						.id(issue.getId())
 						.content(issue.getContent())
 						.title(issue.getTitle())
 						.createDate(issue.getCreateDate())
