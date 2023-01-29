@@ -3,6 +3,8 @@ package com.sk.manage.service.issue;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -10,6 +12,7 @@ import com.sk.manage.domain.issue.Issue;
 import com.sk.manage.domain.issue.IssueRepository;
 import com.sk.manage.domain.issue.Tag;
 import com.sk.manage.domain.issue.TagRepository;
+import com.sk.manage.web.common.dto.PageResponseDto;
 import com.sk.manage.web.issue.IssueResponseDto;
 import com.sk.manage.web.issue.IssueSaveRequestDto;
 
@@ -41,9 +44,19 @@ public class IssueService {
 	
 	//3.이슈목록
 	//TODO : 페이징으로 전환
-	public List<IssueResponseDto> issueList() {
-		List<Issue> findAllIssue = issueRepository.findAll();
-		List<IssueResponseDto> results = findAllIssue.stream()
+	public List<IssueResponseDto> issueList(Pageable pageable, PageResponseDto pageResponseDto) {
+		
+		Page<Issue> findAll = issueRepository.findAll(pageable);
+		
+		PageResponseDto page = PageResponseDto.builder()
+				.pageNumber(findAll.getPageable().getPageNumber())
+				.pageSize(findAll.getPageable().getPageSize())
+				.totalPages(findAll.getTotalPages())
+				.build();
+		
+		pageResponseDto.setPageInfo(page);
+		
+		List<IssueResponseDto> results = findAll.stream()
 				.map(issue -> 
 				IssueResponseDto.builder().tagName(issue.getTag().getName())
 						.id(issue.getId())

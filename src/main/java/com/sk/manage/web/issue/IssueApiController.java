@@ -1,7 +1,5 @@
 package com.sk.manage.web.issue;
 
-import java.util.List;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +21,6 @@ public class IssueApiController {
 		issueService.issueSave(requestDto);
 		return 1L;
 	}
-	
 	
 	@GetMapping("/issue/sample")
 	public Long saveTest() {
