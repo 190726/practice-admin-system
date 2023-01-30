@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/base :: layout(~{::title},~{::section})}"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+<title>Issue Detail</title>
+<link th:href="@{/css/bootstrap.min.css}"
+	href="../../static/css/bootstrap.css" rel="stylesheet">
+<link th:href="@{/css/common.css}" href="../../static/css/common.css"
+	rel="stylesheet">
+</head>
+<body>
+	<section>
+		<input type="hidden" id="issueId" th:value="${issueDetailDto.issueId}" />
+		<div class="container" id="containers">
+			<h4 class="mt-4 content-heading">
+				[<span th:text="${issueDetailDto.tag}"></span>] <span
+					th:text="${issueDetailDto.title}"></span>
+
+			</h4>
+
+			<div class="form-group">
+				<textarea class="form-control" id="exampleFormControlTextarea1"
+					th:value="${issueDetailDto.content}"
+					th:text="${issueDetailDto.content}" rows="7" readOnly></textarea>
+			</div>
+			<div>
+				<span class="form-text text-muted"
+					th:text="작성일 + ': ' + ${issueDetailDto.create}"></span>
+			</div>
+			<div>
+				<span class="form-text text-muted"
+					th:text="수정일 + ': ' + ${issueDetailDto.update}"></span>
+			</div>
+			<div class="d-grid gap-2 mt-2">
+				<button class="btn btn-primary btn-issue-update" type="button">수정</button>
+			</div>
+		</div>
+		<script type="text/javascript" th:src="@{/js/app/issue/detail.js}"
+			src="../../static/js/app/issue/detail.js"></script>
+	</section>
+
+</body>
+</html>

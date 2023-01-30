@@ -1,6 +1,7 @@
 package com.sk.manage.service.issue;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import com.sk.manage.domain.issue.IssueRepository;
 import com.sk.manage.domain.issue.Tag;
 import com.sk.manage.domain.issue.TagRepository;
 import com.sk.manage.web.common.dto.PageResponseDto;
+import com.sk.manage.web.issue.IssueDetailDto;
 import com.sk.manage.web.issue.IssueResponseDto;
 import com.sk.manage.web.issue.IssueSaveRequestDto;
 
@@ -26,6 +28,20 @@ public class IssueService {
 	
 	private final IssueRepository issueRepository;
 	private final TagRepository tagRepository;
+	
+	//0. 이슈조회
+	public IssueDetailDto issueFindById(Long issueId) {
+		Issue issue = issueRepository.findById(issueId).orElseThrow(IllegalStateException::new);
+		
+		return IssueDetailDto.builder()
+							.issueId(issue.getId())
+							.title(issue.getTitle())
+							.content(issue.getContent())
+							.tag(issue.getTag().getName())
+							.create(issue.getCreateDate())
+							.update(issue.getModifiedDate())
+							.build();
+	}
 	
 	//1.이슈저장
 	@Transactional

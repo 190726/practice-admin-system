@@ -37,7 +37,7 @@
 			<tr th:each="issue, i: ${issues}">
 				<!-- <th scope="row" th:text="${i.index + 1}">1</th> -->
 				<td th:text="${issue.tagName}">Mark</td>
-				<td ><a th:href="@{/web/system/detail/{sysId}(sysId = ${issue.id})}" th:text="${issue.title}" class="">title</a></td>
+				<td ><a th:href="@{/web/issue/detail/{sysId}(sysId = ${issue.id})}" th:text="${issue.title}" class="">title</a></td>
 				<td th:text="${#temporals.format(issue.createDate, 'yyyy-MM-dd HH:mm')}">@mdo</td>
 			</tr>
 		</tbody>
