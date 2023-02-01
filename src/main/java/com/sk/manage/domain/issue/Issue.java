@@ -81,4 +81,8 @@ public class Issue extends BaseTimeEntity{
 	public Tag getTag() {
 		return this.tag;
 	}
+	
+	public void updateContent(String content) {
+		this.content = content;
+	}
 }

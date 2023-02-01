@@ -17,6 +17,7 @@ import com.sk.manage.web.common.dto.PageResponseDto;
 import com.sk.manage.web.issue.IssueDetailDto;
 import com.sk.manage.web.issue.IssueResponseDto;
 import com.sk.manage.web.issue.IssueSaveRequestDto;
+import com.sk.manage.web.issue.IssueUpdateDto;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -88,4 +89,10 @@ public class IssueService {
 		
 	}
 
+	//5.이슈수정
+	@Transactional
+	public void issueUpdate(IssueUpdateDto requestDto) {
+		Issue issue = issueRepository.findById(requestDto.getIssueId()).orElseThrow(IllegalStateException::new);
+		issue.updateContent(requestDto.getContent());
+	}
 }

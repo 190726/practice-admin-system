@@ -5,22 +5,28 @@ var issueDetail = {
 				_this.updateIssue(this);
 			});
 			
+			var contentBox = $('#exampleFormControlTextarea1');
+			$(contentBox).on('dblclick', function(){
+				$(contentBox).attr('readOnly', false);
+			});
+			
 		},
 		updateIssue : function(clickBtn){
 			
 			var data = {
-					issueId : $(clickBtn).val()
+					issueId : $('#issueId').val(),
+					content : $('#exampleFormControlTextarea1').val()
 			};
 			
 			$.ajax({
 				type: 'POST',
-				url: '/api/system/user/delete',
+				url: '/api/issue/update',
 				dataType: 'json',
 				contentType: 'application/json; charset=utf-8',
 				data: JSON.stringify(data)
 			}).done(function(){
-				alert('삭제되었습니다.');
-				$(clickBtn).parent().parent().remove();
+				alert('수정되었습니다.');
+				$('#exampleFormControlTextarea1').attr('readOnly', true);
 			}).fail(function(error){
 				alert(JSON.stringify(error))
 			});

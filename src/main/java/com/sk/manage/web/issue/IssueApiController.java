@@ -2,6 +2,7 @@ package com.sk.manage.web.issue;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,8 +18,15 @@ public class IssueApiController {
 	private final IssueService issueService;
 	
 	@PostMapping("/issue/save")
-	public Long save(IssueSaveRequestDto requestDto) {
+	public Long save(@RequestBody IssueSaveRequestDto requestDto) {
 		issueService.issueSave(requestDto);
+		return 1L;
+	}
+	
+	@PostMapping("/issue/update")
+	public Long update(@RequestBody IssueUpdateDto requestDto) {
+		System.out.println(requestDto);
+		issueService.issueUpdate(requestDto);
 		return 1L;
 	}
 	
