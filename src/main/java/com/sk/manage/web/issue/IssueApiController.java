@@ -1,5 +1,6 @@
 package com.sk.manage.web.issue;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +19,7 @@ public class IssueApiController {
 	private final IssueService issueService;
 	
 	@PostMapping("/issue/save")
-	public Long save(@RequestBody IssueSaveRequestDto requestDto) {
+	public Long save(@RequestBody @Validated IssueSaveRequestDto requestDto) {
 		issueService.issueSave(requestDto);
 		return 1L;
 	}

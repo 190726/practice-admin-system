@@ -21,6 +21,11 @@ public class IssueWebController {
 	
 	private final IssueService issueService;
 	
+	@GetMapping("/issue/new")
+	public String register(Model model) {
+		return "issue/new";
+	}
+	
 	@GetMapping("/issue/list")
 	public String list(Model model, 
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){

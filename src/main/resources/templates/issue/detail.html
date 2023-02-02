@@ -26,11 +26,11 @@
 			</div>
 			<div>
 				<span class="form-text text-muted"
-					th:text="작성일 + ': ' + ${issueDetailDto.create}"></span>
+				    th:text="작성일 + ': ' + ${#temporals.format(issueDetailDto.create, 'yyyy-MM-dd HH:mm')}"></span>
 			</div>
 			<div>
 				<span class="form-text text-muted"
-					th:text="수정일 + ': ' + ${issueDetailDto.update}"></span>
+				    th:text="수정일 + ': ' + ${#temporals.format(issueDetailDto.update, 'yyyy-MM-dd HH:mm')}"></span>
 			</div>
 			<div class="d-grid gap-2 mt-2">
 				<button class="btn btn-primary btn-issue-update" type="button">수정완료</button>

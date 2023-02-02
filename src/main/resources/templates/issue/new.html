@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/base :: layout(~{::title},~{::section})}"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <title>New Issue</title>
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../../static/css/bootstrap.min.css" rel="stylesheet">
+	<link th:href="@{/css/common.css}"
+		  href="../../static/css/common.css" rel="stylesheet">
+</head>
+<body>
+<section>
+
+<div class="container" id="containers">
+
+	<div class="form-group">
+	
+		<label for="tagInput">Tag</label>
+	    <input type="text" class="form-control mb-4 mt-2" id="tagInput" placeholder="제도">
+	    
+	    <label for="titleInput">Title</label>
+	    <input type="text" class="form-control mb-4 mt-2" id="titleInput" placeholder="Title 입력">
+	    
+	    <label for="contentInput">Content</label>
+	    <textarea class="form-control mt-2" id="contentInput" rows="7"></textarea>
+	</div>
+	<div id="errPlaceHolder"></div>
+	
+	<div class="d-grid gap-2 mt-2">
+		<button class="btn btn-primary btn-issue-add" type="button">등록</button>
+	</div>
+</div>
+<script defer type="text/javascript" th:src="@{/js/app/issue/new.js}" src="../../static/js/app/issue/new.js"></script>
+</section>
+
+</body>
+</html>
