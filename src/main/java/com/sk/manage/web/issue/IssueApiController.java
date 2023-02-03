@@ -1,5 +1,7 @@
 package com.sk.manage.web.issue;
 
+import java.util.stream.IntStream;
+
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,8 +35,11 @@ public class IssueApiController {
 	
 	@GetMapping("/issue/sample")
 	public Long saveTest() {
-		IssueSaveRequestDto dto = new IssueSaveRequestDto("spring2","title2","content2");
-		issueService.issueSave(dto);
+		
+		IntStream.range(1, 99).forEach(i -> {
+			IssueSaveRequestDto dto = new IssueSaveRequestDto("spring" + i,"title" + i,"content" + i);
+			issueService.issueSave(dto);
+		});
 		return 1L;
 	}
 }

@@ -7,23 +7,25 @@ import com.sk.manage.domain.issue.Issue;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class IssueSaveRequestDto {
 	
 	@NotBlank(message = "태그는 필수 값입니다.")
-	private String tagName;
+	private String tagName="";
 	
 	@NotBlank(message = "제목은 필수 값입니다.")
-	private String title;
+	private String title="";
 	
 	@NotBlank(message = "내용은 필수 값입니다.")
-	private String content;
+	private String content="";
 	
 	public Issue toEntity() {
 		Issue issue = new Issue(this.title, this.content);

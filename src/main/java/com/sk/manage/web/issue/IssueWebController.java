@@ -1,12 +1,16 @@
 package com.sk.manage.web.issue;
 
+import java.util.List;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.sk.manage.service.issue.IssueService;
@@ -28,11 +32,13 @@ public class IssueWebController {
 	
 	@GetMapping("/issue/list")
 	public String list(Model model, 
+			@ModelAttribute IssueSaveRequestDto searching,
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 		
 		PageResponseDto pageResponseDto = new PageResponseDto();
-		model.addAttribute("issues", issueService.issueList(pageable, pageResponseDto));
+		model.addAttribute("issues", issueService.issueList(pageable, pageResponseDto, searching));
 		model.addAttribute("pages", pageResponseDto);
+		model.addAttribute("issueSaveRequestDto", searching);
 		
 		System.out.println(pageResponseDto);
 		

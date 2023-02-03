@@ -25,7 +25,16 @@
 	  Issue List <a th:href="@{/web/issue/new}" class="btn btn-primary"
 		   style="font-size: .45rem;">new</a>
 	</div>
-
+	<form action="#" th:action="@{/web/issue/list}" th:object="${issueSaveRequestDto}" method="GET">
+		<div class="mt-2" style="text-align: right;padding-right: 5px;">
+			Tag : <input class="searching" type="text" id="tagSearch" th:field="*{tagName}"/> 
+			Title : <input class="searching" type="text" id="titleSearch"  th:field="*{title}"/> 
+			Content : <input class="searching" type="text" id="contentSearch" th:field="*{content}"/>
+			<button type="submit"  class="btn-primary"
+		   style="font-size: .45rem;">조회</button>
+		</div>
+		</form>
+	
 	<table class="table mt-2">
 		<thead>
 			<tr>
@@ -50,20 +59,20 @@
 			startPage = ${pages.startPage},
 			endPage = ${pages.endPage}
 		"
-		
 		aria-label="Page navigation example">
 		<ul class="pagination justify-content-center">
 			<!-- <li th:classappend="${pageNumber + 1 <= pageSize + 1} ? 'disabled'" class="page-item">
 				<a class="page-link" th:href="@{/web/issue/list(page=1)}">First</a>
 			</li> -->
 			<li th:classappend="${pageNumber ==  0} ? 'disabled'" class="page-item">
-				<a class="page-link" th:href="@{/web/issue/list(page=${pageNumber - 1})}">Previous</a>
+				<a class="page-link" th:href="@{/web/issue/list(page=${pageNumber - 1},tagName=${issueSaveRequestDto.tagName},title=${issueSaveRequestDto.title},content=${issueSaveRequestDto.content})}">Previous</a>
 			</li>
 			<li th:each="page : ${#numbers.sequence(startPage,endPage)}" 
 			    th:classappend="${page == pageNumber + 1} ? 'active'" class="page-item">
-				<a th:text="${page}" class="page-link" th:href="@{/web/issue/list(page=${page - 1})}">1</a></li>
+				<a th:text="${page}" class="page-link" 
+				th:href="@{/web/issue/list(page=${page - 1},tagName=${issueSaveRequestDto.tagName},title=${issueSaveRequestDto.title},content=${issueSaveRequestDto.content})}">1</a></li>
 			<li th:classappend="${pageNumber+1 ==  endPage} ? 'disabled'" class="page-item">
-				<a class="page-link" th:href="@{/web/issue/list(page=${pageNumber + 1})}">Next</a></li>
+				<a class="page-link" th:href="@{/web/issue/list(page=${pageNumber + 1},tagName=${issueSaveRequestDto.tagName},title=${issueSaveRequestDto.title},content=${issueSaveRequestDto.content})}">Next</a></li>
 			</li>
 		</ul>
 	</nav>

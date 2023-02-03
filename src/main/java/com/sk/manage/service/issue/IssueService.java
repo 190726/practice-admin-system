@@ -61,9 +61,10 @@ public class IssueService {
 	
 	//3.이슈목록
 	//TODO : 페이징으로 전환
-	public List<IssueResponseDto> issueList(Pageable pageable, PageResponseDto pageResponseDto) {
+	public List<IssueResponseDto> issueList(Pageable pageable, PageResponseDto pageResponseDto, IssueSaveRequestDto searching) {
 		
-		Page<Issue> findAll = issueRepository.findAll(pageable);
+		//Page<Issue> findAll = issueRepository.findAll(pageable);
+		Page<Issue> findAll = issueRepository.findAllSearch(searching.getTitle(),searching.getContent(),searching.getTagName(), pageable);
 		
 		PageResponseDto page = PageResponseDto.builder()
 				.pageNumber(findAll.getPageable().getPageNumber())
