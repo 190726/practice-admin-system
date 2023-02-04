@@ -48,8 +48,13 @@ public class IssueWebController {
 	@GetMapping("/issue/detail/{issueId}")
 	public String detail(Model model, @PathVariable Long issueId) {
 		IssueDetailDto detailDto = issueService.issueFindById(issueId);
+		
 		System.out.println(detailDto);
+		
 		model.addAttribute("issueDetailDto", detailDto);
+		model.addAttribute("replaceBrContent", detailDto.replaceNewLineContent());
+		
 		return "issue/detail";
 	}
+	
 }

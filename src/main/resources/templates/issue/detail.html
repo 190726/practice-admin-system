@@ -16,13 +16,15 @@
 			<h4 class="mt-4 content-heading">
 				[<span th:text="${issueDetailDto.tag}"></span>] <span
 					th:text="${issueDetailDto.title}"></span>
-
 			</h4>
-
-			<div class="form-group">
+			<div class="card" id="contentBox">
+				<div class="card-body" th:utext="${replaceBrContent}" >
+				</div>
+			</div>
+			<div class="form-group" id="contentEdit">
 				<textarea class="form-control" id="exampleFormControlTextarea1"
 					th:value="${issueDetailDto.content}"
-					th:text="${issueDetailDto.content}" rows="7" readOnly></textarea>
+					th:text="${issueDetailDto.content}" rows="7" ></textarea>
 			</div>
 			<div>
 				<span class="form-text text-muted"

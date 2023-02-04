@@ -5,11 +5,13 @@ var issueDetail = {
 				_this.updateIssue(this);
 			});
 			
-			var contentBox = $('#exampleFormControlTextarea1');
-			$(contentBox).on('dblclick', function(){
-				$(contentBox).attr('readOnly', false);
-			});
+			$('#contentEdit').hide();
 			
+			var contentBox = $('#contentBox');
+			$(contentBox).on('dblclick', function(){
+				$('#contentEdit').show();
+				$('#contentBox').hide();
+			});
 		},
 		updateIssue : function(clickBtn){
 			
@@ -26,7 +28,7 @@ var issueDetail = {
 				data: JSON.stringify(data)
 			}).done(function(){
 				alert('수정되었습니다.');
-				$('#exampleFormControlTextarea1').attr('readOnly', true);
+				location.reload();
 			}).fail(function(error){
 				alert(JSON.stringify(error))
 			});

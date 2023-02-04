@@ -29,4 +29,8 @@ public class IssueDetailDto {
 		this.create = create;
 		this.update = update;
 	}
+	
+	public String replaceNewLineContent() {
+		return content.replaceAll("(\n|\r|\r\n|\n\r)", "<br/>");
+	}
 }
