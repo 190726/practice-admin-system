@@ -14,6 +14,7 @@ import org.springframework.util.StringUtils;
 
 import lombok.NoArgsConstructor;
 
+@Table(name = "SYSTEMS")
 @Entity
 @NoArgsConstructor
 public class System extends BaseTimeEntity {
@@ -27,6 +28,7 @@ public class System extends BaseTimeEntity {
 	
 	private LocalDate openDate;
 	
+	@Column(name = "description")
 	private String desc;
 
 	@OneToMany(mappedBy = "system",cascade = CascadeType.ALL, fetch = FetchType.LAZY)

@@ -96,4 +96,9 @@ public class IssueService {
 		Issue issue = issueRepository.findById(requestDto.getIssueId()).orElseThrow(IllegalStateException::new);
 		issue.updateContent(requestDto.getContent());
 	}
+	
+	//6.tag list
+	public List<String> tagList() {
+		return tagRepository.findAll().stream().map(tag -> tag.getName()).collect(Collectors.toList());
+	}
 }

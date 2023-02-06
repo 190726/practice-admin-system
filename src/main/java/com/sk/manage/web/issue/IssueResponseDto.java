@@ -9,16 +9,17 @@ import lombok.Setter;
 @Getter
 @Setter
 public class IssueResponseDto {
-	
+
 	private Long id;
 	private String title;
 	private String tagName;
 	private String content;
 	private LocalDateTime createDate;
 	private LocalDateTime updateDate;
-	
+
 	@Builder
-	public IssueResponseDto(Long id, String title, String tagName, String content, LocalDateTime createDate, LocalDateTime updateDate) {
+	public IssueResponseDto(Long id, String title, String tagName, String content, LocalDateTime createDate,
+			LocalDateTime updateDate) {
 		this.id = id;
 		this.title = title;
 		this.tagName = tagName;

@@ -26,6 +26,9 @@ import com.sk.manage.domain.user.DutyStep;
 import com.sk.manage.domain.user.User;
 import com.sk.manage.domain.user.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Configuration
 public class AppReadyEvent {
 	
@@ -48,7 +51,10 @@ public class AppReadyEvent {
 	public void init() {
 		String[] activeProfiles = environment.getActiveProfiles();
 		boolean isTest = Arrays.stream(activeProfiles).anyMatch((profile)->profile.equals("test"));
-		if(!isTest) dataInit();
+		
+		log.info("isTest is " + isTest);
+		
+		//if(!isTest) dataInit();
 	}
 
 	public void dataInit() {

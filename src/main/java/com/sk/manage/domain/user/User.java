@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @ToString
 @NoArgsConstructor
+@Table(name = "USERS")
 @Entity
 public class User extends BaseTimeEntity {
 

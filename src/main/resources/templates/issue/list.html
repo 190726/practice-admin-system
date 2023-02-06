@@ -21,10 +21,26 @@
 </head>
 <body>
 <section>
+	<style>
+        .tagsBox{
+        	display: flex;
+        	justify-content: flex-end;
+        }
+        .tag{
+        	padding-right: 10px;
+        	font-weight: bold;
+        	cursor: pointer;
+        }
+    </style>
 	<div class="bg-secondary text-light" style="margin-top: 5px;padding: 5px;">
 	  Issue List <a th:href="@{/web/issue/new}" class="btn btn-primary"
 		   style="font-size: .45rem;">new</a>
 	</div>
+	
+	<div class="tagsBox" >
+		<div class="tag" th:each="tag, i: ${tagList}" th:text="${tag}">tag1</div>
+	</div>
+	
 	<form action="#" th:action="@{/web/issue/list}" th:object="${issueSaveRequestDto}" method="GET">
 		<div class="mt-2" style="text-align: right;padding-right: 5px;">
 			Tag : <input class="searching" type="text" id="tagSearch" th:field="*{tagName}"/> 
@@ -76,6 +92,8 @@
 			</li>
 		</ul>
 	</nav>
+	<script type="text/javascript" th:src="@{/js/app/issue/list.js}"
+			src="../../static/js/app/issue/list.js"></script>
 	</section>
 </body>
 </html>

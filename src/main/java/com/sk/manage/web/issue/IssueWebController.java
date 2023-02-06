@@ -36,9 +36,11 @@ public class IssueWebController {
 			@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
 		
 		PageResponseDto pageResponseDto = new PageResponseDto();
+		
 		model.addAttribute("issues", issueService.issueList(pageable, pageResponseDto, searching));
 		model.addAttribute("pages", pageResponseDto);
 		model.addAttribute("issueSaveRequestDto", searching);
+		model.addAttribute("tagList", issueService.tagList());
 		
 		System.out.println(pageResponseDto);
 		
